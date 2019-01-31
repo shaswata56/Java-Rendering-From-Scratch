@@ -12,8 +12,14 @@ public class Render {
     public void draw(Render render, int xOffset, int yOffset) {
         for(int y = 0; y < render.height; y++) {
             int yPix = y + yOffset;
-            for(int x = 0; x < render.height; x++) {
+            if (yPix < 0 || yPix >= 1080) {
+                continue;
+            }
+            for (int x = 0; x < render.width; x++) {
                 int xPix = x + xOffset;
+                if (xPix < 0 || xPix >= 1920) {
+                    continue;
+                }
                 pixels[xPix + yPix * width] = render.pixels[x + y * render.width];
             }
         }
